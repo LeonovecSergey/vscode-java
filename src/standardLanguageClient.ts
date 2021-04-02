@@ -467,9 +467,9 @@ function projectConfigurationUpdate(languageClient: LanguageClient, uri?: Uri) {
 	}
 }
 
-function isJavaConfigFile(path: String) {
-	return buildFilePatterns.filter((pattern: String) => path.toLowerCase().endsWith(pattern.toLowerCase()))
-	.length > 0;
+function isJavaConfigFile(path: string) {
+	var regEx = new RegExp('(' + buildFilePatterns.join(')|(') + ')', 'i');
+	return regEx.test(path);
 }
 
 function setProjectConfigurationUpdate(languageClient: LanguageClient, uri: Uri, status: FeatureStatus) {
